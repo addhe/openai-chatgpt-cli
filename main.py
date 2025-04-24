@@ -16,9 +16,12 @@ def generate_content(prompt: str, conversation_history: list, model_config: dict
         # Add new user prompt to the conversation history
         conversation_history.append({"role": "user", "content": prompt})
 
+        # Create messages list for API call
+        messages = conversation_history.copy()
+
         response = client.chat.completions.create(
             model=model_config["model"],
-            messages=conversation_history,
+            messages=messages,
             temperature=model_config["temperature"],
             max_tokens=model_config["max_tokens"],
             top_p=model_config["top_p"]
