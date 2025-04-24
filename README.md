@@ -1,54 +1,98 @@
-# GPT-4o Text Generator
+# OpenAI ChatGPT CLI
 
-Addhe Warman Putra (Awan) Personal OpenAI ChatGPT on Linux Terminal.
-
-This project showcases the capabilities of the GPT-4o model, a large language model, for generating human-like text.
+A command-line interface for interacting with OpenAI's language models, created by Addhe Warman Putra (Awan).
 
 ## Features
 
-* Generate text based on a given prompt.
-* Interactive command-line interface for easy user interaction.
-* Welcome message and instructions to guide users.
+* Interactive command-line interface for conversations with AI
+* Support for multiple OpenAI models (GPT-4, GPT-3.5-turbo, etc.)
+* Customizable model parameters (temperature, max tokens, etc.)
+* Conversation history tracking
+* Character-by-character response display for a more natural feel
+* Easy-to-use command-line arguments for model configuration
 
-## Setup
+## Requirements
 
-To use this script, you will need the following:
-
-* OpenAI API key (obtainable from OpenAI website)
 * Python 3.8 or later
-* Virtual environment (recommended)
+* OpenAI API key (Get it from [OpenAI Platform](https://platform.openai.com/api-keys))
+* Required Python packages (see requirements.txt)
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone git@github.com:addhe/openai-chatgpt-cli.git
+cd openai-chatgpt-cli
+```
+
+2. Create and activate a virtual environment (recommended):
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows, use: venv\Scripts\activate
+```
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+4. Set up your OpenAI API key:
+   1. Sign up or log in to [OpenAI Platform](https://platform.openai.com)
+   2. Navigate to [API Keys section](https://platform.openai.com/api-keys)
+   3. Create a new API key
+   4. Set the API key in your environment:
+```bash
+export OPENAI_API_KEY=your_api_key_here
+```
 
 ## Usage
 
+### Basic Usage
 
-1. Clone the repository:
-`$ git clone https://github.com/awanwb/gpt-4o-text-generator.git`
-2. Create a virtual environment and activate it:
-   ```
-   $ python3 -m venv venv 
-   $ source venv/bin/activate
-   ```
-3. Install dependencies:
-   `$ pip install -r requirements.txt`
-4. Set your OpenAI API key in the environment:
-   `$ export OPENAI_API_KEY=<your_openai_api_key>`
-5. Run the script:
-   `$ python main.py`
-
-## Example
-   After launching the script, you will be greeted with a welcome message and instructions. You can then type prompts and the model will generate text based on your input. For example:
-
-```
-> What is the meaning of life?
-> The meaning of life is a deeply personal question that has been pondered by philosophers and thinkers for centuries. There is no one definitive answer, but some common themes that emerge include finding purpose and fulfillment in relationships, work, creativity, and personal growth.
+Run the script with default settings:
+```bash
+python main.py
 ```
 
-## Exit
-```
-> To exit the script, type exit() at the prompt.
+### Advanced Usage
+
+The script supports several command-line arguments for customization:
+
+```bash
+python main.py [--model MODEL] [--temperature TEMP] [--max-tokens TOKENS] [--top-p TOP_P]
 ```
 
-Notes
-* The model may take some time to generate text, especially for longer prompts.
-* The generated text may not always be accurate or factual.
-* Use the model responsibly and respectfully.
+Available options:
+- `--model`: Choose the OpenAI model (default: gpt-4.5-preview)
+- `--temperature`: Set the response creativity (0.0-2.0, default: 1.0)
+- `--max-tokens`: Set maximum response length (default: 2048)
+- `--top-p`: Set nucleus sampling parameter (0.0-1.0, default: 1.0)
+
+Examples:
+```bash
+# Use GPT-3.5-turbo with lower temperature
+python main.py --model gpt-3.5-turbo --temperature 0.7
+
+# Use GPT-4 with longer maximum response
+python main.py --model gpt-4 --max-tokens 4096
+
+# Customize multiple parameters
+python main.py --model gpt-4 --temperature 0.8 --max-tokens 3072 --top-p 0.9
+```
+
+## Interactive Commands
+
+While in the chat interface:
+- Type your message and press Enter to send
+- Type `exit()` to quit the program
+
+## Notes
+
+* Response time may vary depending on the model and request complexity
+* API usage is subject to OpenAI's pricing and rate limits
+* Generated responses may vary in accuracy and completeness
+* Always review the generated content for accuracy
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
